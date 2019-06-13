@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  title: Inholland Test API
+  description: This is the Inholland Test API
+  contact:
+    email: abc@def.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+# Added by API Auto Mocking Plugin
+- description: SwaggerHub API Auto Mocking
+  url: https://virtserver.swaggerhub.com/AliYussef/test/1.0.0
+- url: https://inhollandbackend.azurewebsites.net/api
+  description: Inholland backend
+paths:
+  /Articles:
+    get:
+      tags:
+      - articles
+      summary: Get all the artciels
+      description: Calling this allows you to fetch the article data
+      operationId: getArticles
+      responses:
+        200:
+          description: the article data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+        400:
+          description: bad input parameter
+  /Feeds:
+    get:
+      tags:
+      - articles
+      summary: artcile call
+      description: Calling this allows you to fetch the article  data
+      operationId: getFeeds
+      responses:
+        200:
+          description: the article data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feed'
+        400:
+          description: bad input parameter
+  /Articles/{id}:
+    get:
+      tags:
+      - articles
+      summary: artcile call
+      description: Calling this allows you to fetch the article  data
+      operationId: getArticle
+      parameters:
+      - name: id
+        in: path
+        description: the article id
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        200:
+          description: the article data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+        400:
+          description: bad input parameter
+  /Articles/liked:
+    get:
+      tags:
+      - articles
+      summary: artcile call
+      description: Calling this allows you to fetch the article  data
+      operationId: getLikedArticles
+      responses:
+        200:
+          description: the article data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+        400:
+          description: bad input parameter
+        401:
+          description: unauthorized request
+      security:
+      - api_key: []
+  /Users/register:
+    post:
+      tags:
+      - users
+      operationId: registerUser
+      summary: add new user
+      requestBody:
+        description: add new user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: the article data
+        201:
+          description: Created
+  /Users/login:
+    post:
+      tags:
+      - users
+      operationId: loginUser
+      summary: logging in
+      requestBody:
+        description: logging in
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: the article data
+        201:
+          description: Created
+components:
+  schemas:
+    Article:
+      type: object
+      properties:
+        Results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Result'
+        NextId:
+          type: string
+    Result:
+      type: object
+      properties:
+        Id:
+          type: integer
+        Feed:
+          type: integer
+        Title:
+          type: string
+        Summary:
+          type: string
+        PublishDate:
+          type: string
+        Image:
+          type: string
+        Url:
+          type: string
+        Related:
+          type: array
+          items:
+            type: string
+        Categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Categorie'
+    Categorie:
+      type: object
+      properties:
+        Id:
+          type: integer
+        Name:
+          type: string
+    Feed:
+      type: object
+      properties:
+        Id:
+          type: integer
+        Name:
+          type: string
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-authtoken
+      in: header

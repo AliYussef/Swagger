@@ -9,9 +9,6 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-# Added by API Auto Mocking Plugin
-- description: SwaggerHub API Auto Mocking
-  url: https://virtserver.swaggerhub.com/AliYussef/test/1.0.0
 - url: https://inhollandbackend.azurewebsites.net/api
   description: Inholland backend
 paths:

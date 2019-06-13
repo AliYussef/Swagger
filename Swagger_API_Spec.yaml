@@ -40,8 +40,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
           
-      security:
-      - api_key: []
       
     post:
       tags:
@@ -191,8 +189,6 @@ paths:
         '401': 
           $ref: '#/components/responses/Unauthorized'
           
-      security:
-      - api_key: []
       
     post:
       tags:

@@ -1,0 +1,78 @@
+swagger: '2.0'
+info:
+  title: Banking API
+  version: 1.0.0
+  description: Banking api
+  contact:
+    email: example@email.com
+host: banking-application-api.herokuapp.com
+schemes:
+  - https
+  - http
+  
+paths:
+  /accounts:
+    post:
+      summary: create a bank account
+      operationId: createBankAccount
+      description: Calling this will allow employees to open an account for a specific customer
+      tags:
+        - accounts
+      produces:
+        - application/json
+      consumes: 
+        - application/json
+      parameters:
+        - in: body
+          name: account
+          description: The user to create.
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        201:
+          description: Created
+          
+definitions:
+  Account:
+      type: object
+      required:
+        - dateOfOpening
+        - userId
+        - accountType
+      properties:
+        accountNumber:
+          type: integer
+          format: int64
+        iban:
+          type: string
+        balance:
+          type: number
+          format: float
+        dateOfOpening:
+          type: string
+        userIdentification:
+          type: integer
+          format: int64
+        #user:
+          #allOf:
+          #- $ref: '#/components/schemas/User'
+        currency:
+          type: string
+        accountType: 
+          type: string
+          enum: ["current","saving"]
+        accountStatus:
+          type: string
+          enum: ["opened", "closed"]
+          default: "opened"
+          
+  CurrentAccount:
+    allOf:
+      - $ref: '#/definitions/Account'
+  SavingAccount:
+    allOf:
+      - $ref: '#/definitions/Account'
+    properties:
+      interestRate:
+         type: number
+         format: float

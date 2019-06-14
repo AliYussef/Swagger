@@ -196,8 +196,6 @@ paths:
       
     post:
       tags:
-      post:
-      tags:
         - accounts 
       summary: create a bank account
       operationId: createBankAccount
@@ -207,7 +205,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CurrentAccount'
+              oneOf:
+                - $ref: '#/components/schemas/CurrentAccount'
+                - $ref: '#/components/schemas/SavingAccount'
       responses:
         '201':
           description: the account has been created

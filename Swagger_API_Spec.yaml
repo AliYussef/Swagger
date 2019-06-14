@@ -196,7 +196,9 @@ paths:
       
     post:
       tags:
-      - accounts 
+      post:
+      tags:
+        - accounts 
       summary: create a bank account
       operationId: createBankAccount
       description: Calling this will allow employees to open an account for a specific customer
@@ -205,9 +207,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/CurrentAccount'
-                - $ref: '#/components/schemas/SavingAccount'
+              $ref: '#/components/schemas/CurrentAccount'
       responses:
         '201':
           description: the account has been created

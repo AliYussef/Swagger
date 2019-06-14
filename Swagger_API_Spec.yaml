@@ -196,7 +196,7 @@ paths:
       
     post:
       tags:
-        - accounts 
+      - accounts 
       summary: create a bank account
       operationId: createBankAccount
       description: Calling this will allow employees to open an account for a specific customer

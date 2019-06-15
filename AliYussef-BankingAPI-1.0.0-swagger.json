@@ -10,7 +10,7 @@
   },
   "servers" : [ {
     "description" : "This the is a simple REST API banking application",
-    "url" : "https://banking-application-api.herokuapp.com"
+    "url" : "http://localhost:8082"
   } ],
   "paths" : {
     "/users" : {

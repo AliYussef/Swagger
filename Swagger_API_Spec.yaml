@@ -205,9 +205,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/CurrentAccount'
-                - $ref: '#/components/schemas/SavingAccount'
+              $ref: '#/components/schemas/Account'
       responses:
         '201':
           description: the account has been created
@@ -445,10 +443,6 @@ components:
           
     Account:
       type: object
-      required:
-        - dateOfOpening
-        - userId
-        - accountType
       properties:
         accountNumber:
           type: integer
@@ -463,9 +457,6 @@ components:
         userIdentification:
           type: integer
           format: int64
-        user:
-          allOf:
-          - $ref: '#/components/schemas/User'
         currency:
           type: string
         accountType: 
